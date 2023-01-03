@@ -1,4 +1,4 @@
-``
+``sh
 docker exec -it **** /bin/bash
 mysql -u root -p
 use mysql
