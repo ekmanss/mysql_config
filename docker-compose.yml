@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql:
+    restart: always
+    image: mysql:8.0.27
+    container_name: mysql8
+    volumes:
+      - /home/hfers/mysql/config:/etc/mysql
+      - /home/hfers/mysql/logs:/var/log/mysql
+      - /home/hfers/mysql/data:/var/lib/mysql
+      - /home/hfers/mysql-files:/var/lib/mysql-files
+    environment:
+      - MYSQL_USER=hfer
+      - MYSQL_PASSWORD=hfer@hfer.com
+      - MYSQL_ROOT_PASSWORD=root@root.com
+      - MYSQL_DATABASE=test
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    ports:
+      - 3306:3306
+    networks:
+      - sp_default
+networks:
+  sp_default:
+    driver: bridge
